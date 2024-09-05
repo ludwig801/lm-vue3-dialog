@@ -3,6 +3,9 @@
   "author": "Luís Magalhães",
   "version": "0.0.2",
   "description": "A Vue component library using HTML5 <dialog> element for a modal-like experience",
+  "repository": {
+    "url": "https://github.com/ludwig801/lm-vue3-dialog"
+  },
   "type": "module",
   "main": "./dist/lm-vue3-dialog.umd.js",
   "module": "./dist/lm-vue3-dialog.js",
