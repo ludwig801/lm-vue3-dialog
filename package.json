@@ -1,5 +1,5 @@
 {
-  "name": "lm-vue3-dialog",
+  "name": "@ludwig801/vue3-dialog",
   "version": "0.1.8",
   "description": "A Vue component library using HTML5 <dialog> element for a modal-like experience",
   "author": "Luís Magalhães <lmaga801@gmail.com> (https://github.com/ludwig801)",
@@ -12,14 +12,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ludwig801/lm-vue3-dialog.git"
+    "url": "git+https://github.com/ludwig801/vue3-dialog.git"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build"
   },
   "type": "module",
-  "main": "./dist/lm-vue3-dialog.js",
+  "main": "./dist/vue3-dialog.js",
   "peerDependencies": {
     "vue": "^3.4.37"
   },
