@@ -16,8 +16,8 @@ tsconfig*
 index.html
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+.vscode
+.github
 .idea
 .DS_Store
 *.suo

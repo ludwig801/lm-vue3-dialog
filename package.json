@@ -24,6 +24,7 @@
   },
   "type": "module",
   "main": "./dist/vue3-dialog.js",
+  "types": "./dist/vue3-dialog.d.ts",
   "peerDependencies": {
     "vue": "^3.4.37"
   },

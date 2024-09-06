@@ -10,9 +10,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, "src/lib/index.ts"),
-      name: "LMDialog",
+      name: "Vue3Dialog",
       formats: ["es"],
-      fileName: "lm-vue3-dialog",
+      fileName: "vue3-dialog",
     },
     rollupOptions: {
       external: ["vue"],
