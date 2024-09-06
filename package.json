@@ -1,34 +1,30 @@
 {
   "name": "lm-vue3-dialog",
-  "author": "Luís Magalhães",
-  "version": "0.0.2",
+  "version": "0.1.2",
   "description": "A Vue component library using HTML5 <dialog> element for a modal-like experience",
-  "repository": {
-    "url": "https://github.com/ludwig801/lm-vue3-dialog"
-  },
-  "type": "module",
-  "main": "./dist/lm-vue3-dialog.umd.js",
-  "module": "./dist/lm-vue3-dialog.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/lm-vue3-dialog.esm.js",
-      "require": "./dist/lm-vue3-dialog.js"
-    }
-  },
-  "files": [
-    "dist",
-    "src"
+  "author": "Luís Magalhães <lmaga801@gmail.com> (https://github.com/ludwig801)",
+  "license": "MIT",
+  "private": false,
+  "keywords": [
+    "vue3",
+    "modal",
+    "dialog"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ludwig801/lm-vue3-dialog.git"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "build": "vite build"
   },
+  "type": "module",
+  "main": "./dist/lm-vue3-dialog.js",
   "peerDependencies": {
     "vue": "^3.4.37"
   },
   "devDependencies": {
+    "@types/node": "^22.5.4",
     "@vitejs/plugin-vue": "^5.1.2",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.45",
@@ -36,7 +32,7 @@
     "typescript": "^5.5.3",
     "vite": "^5.4.1",
     "vite-plugin-dts": "^4.1.0",
-    "vue-tsc": "^2.0.29",
-    "vue": "^3.4.37"
+    "vue": "^3.4.37",
+    "vue-tsc": "^2.0.29"
   }
 }
