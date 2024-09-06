@@ -1,6 +1,8 @@
 # Vue 3 Dialog
 
 This is a component which builds a barebones modal using the HTML5 `<dialog>` element.
+The dialog element has only the necessary inline styling to make sure the elements are coherent with the expected behaviour.
+Any extra styling should be provided via the `*-class` props.
 
 # Installation (ES Module)
 
