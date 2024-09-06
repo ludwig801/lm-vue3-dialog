@@ -15,24 +15,32 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci
-     # - run: npm test
+          cache: "npm"
+      - run: npm install
+      - run: npm run build --if-present
+
+      # Store the dist folder
+      - uses: actions/upload-artifact@v3
+        with:
+          name: app-build
+          path: dist
 
   publish-gpr:
-    needs: build
+    needs: [build]
     runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      # Get the dist folder
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
-      - run: npm install
-      - run: npm run build
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: app-build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-
