@@ -1,3 +1,14 @@
+<template>
+  <dialog class="dialog" :class="{ isClosing }" ref="dialog">
+    <div class="dialog-backdrop" :class="backdropClass" @click="closeDialog">
+      <slot name="backdrop"></slot>
+    </div>
+    <div class="dialog-content" :class="contentClass">
+      <slot name="default"></slot>
+    </div>
+  </dialog>
+</template>
+
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 
@@ -106,15 +117,6 @@ onBeforeUnmount(() => {
 });
 </script>
 
-<template>
-  <dialog class="dialog" :class="{ isClosing }" ref="dialog">
-    <div class="dialog-backdrop" :class="backdropClass" @click="closeDialog" />
-    <div class="dialog-content" :class="contentClass">
-      <slot></slot>
-    </div>
-  </dialog>
-</template>
-
 <style lang="css" scoped>
 .dialog[open] {
   display: flex;
@@ -139,18 +141,23 @@ onBeforeUnmount(() => {
 
 .dialog-backdrop {
   z-index: -1;
-  background: #0009;
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
 }
 
 .dialog-content {
   position: relative;
   width: v-bind("width");
   max-width: v-bind("maxWidth");
+  display: flex;
+  flex-direction: column;
 }
 
 .dialog-fieldset {
