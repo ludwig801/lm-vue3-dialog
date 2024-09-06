@@ -1,6 +1,6 @@
 {
   "name": "@ludwig801/vue3-dialog",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A Vue component library using HTML5 <dialog> element for a modal-like experience",
   "author": "Luís Magalhães <lmaga801@gmail.com> (https://github.com/ludwig801)",
   "license": "MIT",
@@ -20,11 +20,15 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build && vue-tsc -p tsconfig.types.json"
   },
   "type": "module",
   "main": "./dist/vue3-dialog.js",
-  "types": "./dist/vue3-dialog.d.ts",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    "types": "./dist/types/index.d.ts",
+    "default": "./dist/vue3-dialog.js"
+  },
   "peerDependencies": {
     "vue": "^3.4.37"
   },
@@ -36,7 +40,6 @@
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.3",
     "vite": "^5.4.1",
-    "vite-plugin-dts": "^4.1.0",
     "vite-plugin-lib-inject-css": "^2.1.1",
     "vue": "^3.4.37",
     "vue-tsc": "^2.0.29"
