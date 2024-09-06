@@ -42,6 +42,7 @@ npm i @ludwig801/vue3-dialog
 | Slot            | Bindings                                | Description | 
 | --------------- | --------------------------------------- | - |
 | `default`       |                                         | The dialog's default slot, where the content will be placed. |
+| `backdrop`      |                                         | Used to customize the appearance of the backdrop, if `backdrop-class` is not enough. |
 
 ## Example usage
 
