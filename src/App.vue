@@ -1,13 +1,13 @@
 <template>
   <button type="button" @click="isOpen = true">Open Dialog</button>
-  <LMDialog v-model:open="isOpen" :content-class="'border text-slate-100'">
+  <Dialog v-model:open="isOpen" :content-class="'border text-slate-100'">
     This is the dialog content
-  </LMDialog>
+  </Dialog>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import LMDialog from "./components/LMDialog.vue";
+import Dialog from "./lib/Dialog.vue";
 
 const isOpen = ref(false);
 </script>

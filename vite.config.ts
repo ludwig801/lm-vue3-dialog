@@ -1,14 +1,15 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import dts from "vite-plugin-dts";
+import { resolve } from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), dts()],
   build: {
     lib: {
-      entry: "src/library.ts",
+      entry: resolve(__dirname, "src/lib/index.ts"),
       name: "LMDialog",
+      formats: ["es"],
       fileName: "lm-vue3-dialog",
     },
     rollupOptions: {
@@ -20,4 +21,5 @@ export default defineConfig({
       },
     },
   },
+  plugins: [vue(), dts({ rollupTypes: true })],
 });

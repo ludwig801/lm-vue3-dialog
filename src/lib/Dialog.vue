@@ -1,61 +1,57 @@
-<template>
-  <dialog class="dialog" :class="{ isClosing }" ref="dialog">
-    <div class="dialog-backdrop" :class="backdropClass" @click="closeDialog" />
-    <div class="dialog-content" :class="contentClass">
-      <slot></slot>
-    </div>
-  </dialog>
-</template>
-
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 
-const open = defineModel<boolean>("open", {
-  required: true,
-});
-
-const emits = defineEmits<{
+export interface DialogEmits {
   (event: "update:open", isOpen: boolean): void;
   (event: "open:begin"): void;
   (event: "open:end"): void;
   (event: "close:begin"): void;
   (event: "close:end"): void;
-}>();
+}
 
-const props = withDefaults(
-  defineProps<{
-    /**
-     * Default CSS content width.
-     *
-     * @default "24rem"
-     */
-    width?: string;
-    /**
-     * Default CSS content max-width.
-     *
-     * @default "calc(100vw - 4rem)"
-     */
-    maxWidth?: string;
-    /**
-     * How many `ms` does show/hide animation take.
-     * Setting this to `0` disables the animation
-     *
-     * @default 150
-     */
-    animationTime?: number;
-    loadingClass?: string;
-    backdropClass?: string;
-    contentClass?: string;
-    headerClass?: string;
-    bodyClass?: string;
-    footerClass?: string;
-  }>(),
-  {
-    width: () => "24rem",
-    maxWidth: () => "calc(100vw - 4rem)",
-    animationTime: () => 150,
-  }
-);
+export interface DialogProps {
+  /**
+   * Default CSS content width.
+   *
+   * @default "24rem"
+   */
+  width?: string;
+  /**
+   * Default CSS content max-width.
+   *
+   * @default "calc(100vw - 4rem)"
+   */
+  maxWidth?: string;
+  /**
+   * How many `ms` does show/hide animation take.
+   * Setting this to `0` disables the animation
+   *
+   * @default 150
+   */
+  animationTime?: number;
+  /**
+   * The class attribute to apply to the backdrop element.
+   *
+   * @default ""
+   */
+  backdropClass?: string | object;
+  /**
+   * The class attribute to apply to the content element.
+   */
+  contentClass?: string | object;
+}
+
+const open = defineModel<boolean>("open", {
+  required: true,
+});
+
+const emits = defineEmits<DialogEmits>();
+
+const props = withDefaults(defineProps<DialogProps>(), {
+  width: () => "24rem",
+  maxWidth: () => "calc(100vw - 4rem)",
+  animationTime: () => 150,
+});
 
 const dialog = ref<HTMLDialogElement>();
 const isOpening = ref(false);
@@ -63,14 +59,16 @@ const isClosing = ref(false);
 
 watch(open, (value: boolean) => (value ? openDialog() : closeDialog()));
 
+function waitMs(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, Math.max(ms, 0)));
+}
+
 async function openDialog() {
   try {
     emits("open:begin");
     isOpening.value = true;
     dialog.value?.showModal();
-    await new Promise((resolve) =>
-      setTimeout(resolve, Math.max(props.animationTime, 0))
-    );
+    await waitMs(props.animationTime);
     emits("open:end");
   } finally {
     isOpening.value = false;
@@ -81,9 +79,7 @@ async function closeDialog() {
   try {
     emits("close:begin");
     isClosing.value = true;
-    await new Promise((resolve) =>
-      setTimeout(resolve, Math.max(props.animationTime - 10, 0))
-    );
+    await waitMs(props.animationTime - 10);
     dialog.value?.close();
     emits("update:open", false);
     emits("close:end");
@@ -109,6 +105,15 @@ onBeforeUnmount(() => {
   dialog.value?.removeEventListener("cancel", onDialogCancel);
 });
 </script>
+
+<template>
+  <dialog class="dialog" :class="{ isClosing }" ref="dialog">
+    <div class="dialog-backdrop" :class="backdropClass" @click="closeDialog" />
+    <div class="dialog-content" :class="contentClass">
+      <slot></slot>
+    </div>
+  </dialog>
+</template>
 
 <style lang="css" scoped>
 .dialog[open] {

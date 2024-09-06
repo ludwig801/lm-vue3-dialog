@@ -8,8 +8,12 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist-ssr
+src
 *.local
+*.config.js
+*.config.ts
+tsconfig*
+index.html
 
 # Editor directories and files
 .vscode/*
