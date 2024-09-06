@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "dist/types",
+    "outDir": "dist",
     "baseUrl": ".",
 
     "target": "ES2020",

@@ -11,7 +11,7 @@ export default defineConfig({
       entry: resolve(__dirname, "src/lib/index.ts"),
       name: "Vue3Dialog",
       formats: ["es"],
-      fileName: "vue3-dialog",
+      fileName: "index",
     },
     rollupOptions: {
       external: ["vue"],
