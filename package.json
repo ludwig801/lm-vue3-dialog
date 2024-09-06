@@ -1,6 +1,6 @@
 {
   "name": "lm-vue3-dialog",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A Vue component library using HTML5 <dialog> element for a modal-like experience",
   "author": "Luís Magalhães <lmaga801@gmail.com> (https://github.com/ludwig801)",
   "license": "MIT",
